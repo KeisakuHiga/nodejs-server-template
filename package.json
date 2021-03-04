@@ -18,5 +18,8 @@
   "homepage": "https://github.com/KeisakuHiga/nodejs-server-template#readme",
   "dependencies": {
     "express": "4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "7.21.0"
   }
 }
