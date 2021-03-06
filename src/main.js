@@ -8,9 +8,10 @@
 
 const express = require('express')
 const app = express()
+const router = require('./routes/index')
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.set('port', process.env.PORT || 3000)
+app.use('/', router)
+app.listen(app.get('port'), () => {
+  console.log(`Server running at http://localhost:${app.get('port')}`)
 })
-
-app.listen(3000)
