@@ -58,7 +58,7 @@ module.exports = {
    * @param {*} req
    * @param {*} res
    */
-  getboardstate: async (req, res) => {
+  boardstate: async (req, res) => {
     try {
       const { data } = await axios.get('https://api.bitflyer.com/v1/getboardstate')
       res.json(data)
@@ -71,7 +71,7 @@ module.exports = {
    * @param {*} req
    * @param {*} res
    */
-  gethealth: async (req, res) => {
+  health: async (req, res) => {
     try {
       const { data } = await axios.get('https://api.bitflyer.com/v1/gethealth')
       res.json(data)
@@ -84,7 +84,7 @@ module.exports = {
    * @param {*} req
    * @param {*} res
    */
-  getchats: async (req, res) => {
+  chats: async (req, res) => {
     try {
       const { data } = await axios.get('https://api.bitflyer.com/v1/getchats')
       res.json(data)

@@ -5,8 +5,8 @@ router.get('/markets', publicServices.markets)
 router.get('/board', publicServices.board)
 router.get('/ticker', publicServices.ticker)
 router.get('/executions', publicServices.executions)
-router.get('/getboardstate', publicServices.getboardstate)
-router.get('/gethealth', publicServices.gethealth)
-router.get('/getchats', publicServices.getchats)
+router.get('/boardstate', publicServices.boardstate)
+router.get('/health', publicServices.health)
+router.get('/chats', publicServices.chats)
 
 module.exports = router
