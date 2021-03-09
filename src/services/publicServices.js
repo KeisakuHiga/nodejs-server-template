@@ -43,17 +43,6 @@ module.exports = {
    */
   markets: async (req, res) => {
     try {
-      const query = `
-      SELECT *
-        FROM users;
-      `
-      const result = await client.query(query)
-      console.log(result.rows[0])
-      client.end()
-    } catch (err) {
-      console.log(err)
-    }
-    try {
       const { data } = await axios.get('https://api.bitflyer.com/v1/markets')
       res.json(data)
     } catch (err) {
