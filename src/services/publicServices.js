@@ -1,17 +1,41 @@
 const axios = require('axios')
 const { Client } = require('pg')
-
-const client = new Client({
-  user: process.env.DB_USER, // DB のユーザー名を指定
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD, // DB のパスワードを指定
-  port: process.env.DB_PORT
+require('dotenv').config()
+const pgClientConfig = {
+  user: process.env.PGUSER, // DB のユーザー名を指定
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD, // DB のパスワードを指定
+  port: process.env.PGPORT
+}
+const client = new Client(pgClientConfig)
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack)
+  } else {
+    console.log('connected')
+  }
 })
-console.log(client)
-client.connect()
 
 module.exports = {
+  /**
+   * test db connection
+   * @param {*} req
+   * @param {*} res
+   */
+  testDbConnection: async (req, res) => {
+    try {
+      const query = `
+      SELECT *
+        FROM users;
+      `
+      const result = await client.query(query)
+      client.end()
+      res.json(result.rows[0])
+    } catch (err) {
+      console.log(err)
+    }
+  },
   /**
    * call /markets public api from bitFlyer
    * @param {*} req
@@ -24,7 +48,7 @@ module.exports = {
         FROM users;
       `
       const result = await client.query(query)
-      console.log(result)
+      console.log(result.rows[0])
       client.end()
     } catch (err) {
       console.log(err)
