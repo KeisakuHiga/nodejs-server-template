@@ -1,37 +1,16 @@
 const axios = require('axios')
-const { Client } = require('pg')
-require('dotenv').config()
-const pgClientConfig = {
-  user: process.env.PGUSER, // DB のユーザー名を指定
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD, // DB のパスワードを指定
-  port: process.env.PGPORT
-}
-const client = new Client(pgClientConfig)
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log('connected')
-  }
-})
+const getUsersModel = require('../models/getUsersModel')
 
 module.exports = {
   /**
-   * test db connection
+   * get users info
    * @param {*} req
    * @param {*} res
    */
-  testDbConnection: async (req, res) => {
+  getUsers: async (req, res) => {
     try {
-      const query = `
-      SELECT *
-        FROM users;
-      `
-      const result = await client.query(query)
-      client.end()
-      res.json(result.rows[0])
+      const users = await getUsersModel()
+      res.json(users)
     } catch (err) {
       console.log(err)
     }
