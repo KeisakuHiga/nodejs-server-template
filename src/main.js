@@ -9,6 +9,16 @@
 const express = require('express')
 const app = express()
 const router = require('./routes/index')
+const client = require('./config/db')
+
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack)
+  } else {
+    console.log('connected to db successfully 🚀🚀🚀')
+  }
+})
+
 require('dotenv').config()
 
 app.set('port', process.env.PORT || 3000)
