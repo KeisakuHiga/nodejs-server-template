@@ -9,15 +9,23 @@
 const express = require('express')
 const app = express()
 const router = require('./routes/index')
-const client = require('./config/db')
+const { sequelize, client } = require('./config/db')
 
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log('connected to db successfully 🚀🚀🚀')
-  }
-})
+// client.connect(err => {
+//   if (err) {
+//     console.error('connection error', err.stack)
+//   } else {
+//     console.log('connected to db successfully 🚀🚀🚀')
+//   }
+// })
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.')
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err)
+  })
 
 require('dotenv').config()
 

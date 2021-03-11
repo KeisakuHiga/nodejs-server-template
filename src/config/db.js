@@ -1,5 +1,8 @@
+const { Sequelize } = require('sequelize')
 const { Client } = require('pg')
 require('dotenv').config()
+
+
 const pgClientConfig = {
   user: process.env.PGUSER, // DB のユーザー名を指定
   host: process.env.PGHOST,
@@ -8,4 +11,9 @@ const pgClientConfig = {
   port: process.env.PGPORT
 }
 const client = new Client(pgClientConfig)
-module.exports = client
+
+const sequelize = new Sequelize(process.env.PGDATABASE, process.env.PGUSER, process.env.PGPASSWORD, {
+  host: process.env.PGHOST,
+  dialect: 'postgres'
+})
+module.exports = { client, sequelize }
