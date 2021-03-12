@@ -9,19 +9,11 @@
 const express = require('express')
 const app = express()
 const router = require('./routes/index')
-const { sequelize, client } = require('./config/db')
-
-// client.connect(err => {
-//   if (err) {
-//     console.error('connection error', err.stack)
-//   } else {
-//     console.log('connected to db successfully 🚀🚀🚀')
-//   }
-// })
+const { sequelize } = require('./config/db')
 
 sequelize.authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.')
+    console.log('Connection has been established successfully 🚀🚀🚀')
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err)
