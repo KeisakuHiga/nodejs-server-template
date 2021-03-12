@@ -1,7 +1,6 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 const { Client } = require('pg')
 require('dotenv').config()
-
 
 const pgClientConfig = {
   user: process.env.PGUSER, // DB のユーザー名を指定
@@ -16,4 +15,30 @@ const sequelize = new Sequelize(process.env.PGDATABASE, process.env.PGUSER, proc
   host: process.env.PGHOST,
   dialect: 'postgres'
 })
-module.exports = { client, sequelize }
+
+const User = sequelize.define('users', {
+  // Model attributes are defined here
+  userId: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING
+    // allowNull defaults to true
+  },
+  userAge: {
+    type: DataTypes.INTEGER,
+    allowNull: true
+  }
+}, {
+  // Other model options go here
+})
+
+// `sequelize.define` also returns the model
+console.log(User === sequelize.models.User) // true
+
+module.exports = { client, sequelize, User }
