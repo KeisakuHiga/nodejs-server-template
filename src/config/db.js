@@ -22,13 +22,13 @@ const User = sequelize.define('users', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  firstName: {
+  userFirstName: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  lastName: {
-    type: DataTypes.STRING
-    // allowNull defaults to true
+  userLastName: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   userAge: {
     type: DataTypes.INTEGER,
