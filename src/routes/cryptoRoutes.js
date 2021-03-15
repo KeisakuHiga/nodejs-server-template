@@ -1,12 +1,12 @@
 const router = require('express').Router()
-const publicServices = require('../services/publicServices')
+const { markets, board, ticker, executions, boardstate, health, chats } = require('../services/publicServices')
 
-router.get('/markets', publicServices.markets)
-router.get('/board', publicServices.board)
-router.get('/ticker', publicServices.ticker)
-router.get('/executions', publicServices.executions)
-router.get('/boardstate', publicServices.boardstate)
-router.get('/health', publicServices.health)
-router.get('/chats', publicServices.chats)
+router.get('/markets', markets)
+router.get('/board', board)
+router.get('/ticker', ticker)
+router.get('/executions', executions)
+router.get('/boardstate', boardstate)
+router.get('/health', health)
+router.get('/chats', chats)
 
 module.exports = router
