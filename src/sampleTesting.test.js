@@ -103,13 +103,15 @@ test('compiling android goes as expected', () => {
   expect(() => compileAndroidCode()).toThrow(/JDK/)
 })
 
+// Promise test
+test('get users from db, testing by Promise', () => {
+  return getUsersModel()
+    .then(data => {
+      expect(data[0].dataValues.user_id).toBe('0001')
+    })
+})
 // async test
-test('get users from db', async () => {
-  try {
-    const data = await getUsersModel()
-    console.log(data)
-    expect(data[0].user_id).toBe('0001')
-  } catch (e) {
-    expect(e).toMatch('error')
-  }
+test('get users from db, testing by async/await', async () => {
+  const result = await getUsersModel()
+  expect(result[0].user_id).toBe('0001')
 })
