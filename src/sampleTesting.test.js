@@ -113,5 +113,12 @@ test('get users from db, testing by Promise', () => {
 // async test
 test('get users from db, testing by async/await', async () => {
   const result = await getUsersModel()
-  expect(result[0].user_id).toBe('0001')
+  expect(result[0].dataValues).toEqual({
+    user_age: 32, user_first_name: 'Keisaku', user_id: '0001', user_last_name: 'Higa'
+  })
+})
+// async test
+test('get users from db, testing by async/await2', async () => {
+  const result = await getUsersModel()
+  expect(result[0].dataValues.user_id).toBe('0001')
 })
