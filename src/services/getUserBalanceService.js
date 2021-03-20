@@ -1,13 +1,13 @@
-const { provider, contract } = require('../config/contract')
+const { contract } = require('../contract/contract')
 /**
  * get user' balance
- * @return {Object} user
+ * @param {string} address
+ * @return {number} userBalance
  */
-module.exports = async () => {
-  // getBalance で、accounts[0]のMetaCoinのbalanceのバランスを取得
+module.exports = async (address) => {
+  // getBalance で、引数で指定されたアドレスののMetaCoinのbalanceのバランスを取得
   const { getBalance } = contract.functions
-  const accounts = await provider.listAccounts()
-  const providerCoinBalance = await getBalance(accounts[0])
+  const providerCoinBalance = await getBalance(address)
   // Hexadecimal to Decimal
   return parseInt(providerCoinBalance[0]._hex, 16)
 }
