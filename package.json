@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon src/main.js",
+    "start": "nodemon src/server.js",
     "test": "jest --watchAll --detectOpenHandles",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "fix": "eslint --fix --ext .js --ignore-path .gitignore ."
