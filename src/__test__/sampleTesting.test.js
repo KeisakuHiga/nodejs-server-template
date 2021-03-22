@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 const sum = require('../sampleTesting')
 const getUsersModel = require('../../src/models/getUsersModel')
+const request = require('supertest')
+const app = require('../app')
 
 test('adds 1 + 2 to equal 3', () => {
   expect(sum(1, 2)).toBe(3)
@@ -121,4 +123,13 @@ test('get users from db, testing by async/await', async () => {
 test('get users from db, testing by async/await2', async () => {
   const result = await getUsersModel()
   expect(result[0].dataValues.user_id).toBe('0001')
+})
+
+// an API integration test
+describe('GET /ether/getUserBalance ', () => {
+  test('It should respond with an users balance', async () => {
+    const response = await request(app).get('/ether/getUserBalance')
+    expect(response.body).toBe(10000)
+    expect(response.statusCode).toBe(200)
+  })
 })
