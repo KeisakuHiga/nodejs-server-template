@@ -1,20 +1,27 @@
 const router = require('express').Router()
 const getUserBalance = require('../services/getUserBalanceService')
-// const { provider } = require('../contract/contract')
+const sendCoin = require('../services/sendCoinService')
 
-/**
- * @param {string} account
- * @return {number} balance
- */
 router.get('/getUserBalance', async (req, res) => {
   try {
-    // const accounts = await provider.listAccounts()
-    // const balance = await getUserBalance(accounts[0])
     const { account } = req.body
     const balance = await getUserBalance(account)
     res.json(balance)
   } catch (err) {
-    console.log(err)
+    console.error(err)
+    throw err
+  }
+})
+
+router.post('/sendCoin', async (req, res) => {
+  try {
+    const { receiver, amount } = req.body
+    console.log('L19: ', receiver, amount)
+    await sendCoin('0x94163E64dfC257182cb2644144C8076FCFC4Ca5f', 200)
+    res.json()
+  } catch (err) {
+    console.error(err)
+    throw err
   }
 })
 
