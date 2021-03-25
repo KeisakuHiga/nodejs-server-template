@@ -1,4 +1,4 @@
-const { wallet, contract } = require('../contract/contract')
+const { contract } = require('../contract/contract')
 
 /**
  * send coin
@@ -8,9 +8,9 @@ const { wallet, contract } = require('../contract/contract')
  * reference for sending a transaction is here: https://github.com/ethers-io/ethers.js/issues/461
  */
 module.exports = async (receiver, amount) => {
-  const transaction = contract.sendCoin(receiver, amount)
-
   // Send the transaction
-  const sendTransactionPromise = await wallet.sendTransaction(transaction)
-  console.log(sendTransactionPromise)
+  const sendTransactionPromise = contract.sendCoin(receiver, amount)
+  sendTransactionPromise.then(function (tx) {
+    console.log(tx)
+  })
 }
