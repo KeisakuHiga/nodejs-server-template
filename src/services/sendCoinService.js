@@ -9,8 +9,5 @@ const { contract } = require('../contract/contract')
  */
 module.exports = async (receiver, amount) => {
   // Send the transaction
-  const sendTransactionPromise = contract.sendCoin(receiver, amount)
-  sendTransactionPromise.then(function (tx) {
-    console.log(tx)
-  })
+  return await contract.functions.sendCoin(receiver, amount)
 }

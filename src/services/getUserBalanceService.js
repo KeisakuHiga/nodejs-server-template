@@ -6,8 +6,7 @@ const { contract } = require('../contract/contract')
  */
 module.exports = async (address) => {
   // getBalance で、引数で指定されたアドレスののMetaCoinのbalanceのバランスを取得
-  const { getBalance } = contract.functions
-  const providerCoinBalance = await getBalance(address)
+  const providerCoinBalance = await contract.functions.getBalance(address)
   // Hexadecimal to Decimal
   return parseInt(providerCoinBalance[0]._hex, 16)
 }

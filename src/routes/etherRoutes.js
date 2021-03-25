@@ -19,8 +19,8 @@ router.post('/sendCoin', async (req, res) => {
     // validation here before invoking the service
     // validation is coming here
     // invoke service
-    await sendCoin(receiver, amount)
-    res.json()
+    const result = await sendCoin(receiver, amount)
+    res.json(result)
   } catch (err) {
     console.error(err)
     throw err
