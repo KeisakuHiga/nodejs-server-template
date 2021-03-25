@@ -1,4 +1,4 @@
-const client = require('../config/db')
+const client = require('../middleware/db')
 
 const query = `
       INSERT INTO users(

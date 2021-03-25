@@ -1,4 +1,4 @@
-const { User } = require('../config/db')
+const { User } = require('../middleware/db')
 
 module.exports = async () => {
   const users = await User.findAll({

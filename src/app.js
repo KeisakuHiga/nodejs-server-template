@@ -9,7 +9,8 @@
 const express = require('express')
 const app = express()
 const router = require('./routes/index')
-const { sequelize } = require('./config/db')
+const { sequelize } = require('./middleware/db')
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 sequelize.authenticate()

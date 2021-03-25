@@ -1,6 +1,8 @@
 node_modules
 .env
+src/dist/
 src/routes/dist/
 src/services/dist/
+src/models/dist/
 src/contract/dist/
 secrets.json
