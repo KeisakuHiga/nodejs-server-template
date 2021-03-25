@@ -16,8 +16,10 @@ router.get('/getUserBalance', async (req, res) => {
 router.post('/sendCoin', async (req, res) => {
   try {
     const { receiver, amount } = req.body
-    console.log('L19: ', receiver, amount)
-    await sendCoin('0x94163E64dfC257182cb2644144C8076FCFC4Ca5f', 200)
+    // validation here before invoking the service
+    // validation is coming here
+    // invoke service
+    await sendCoin(receiver, amount)
     res.json()
   } catch (err) {
     console.error(err)
