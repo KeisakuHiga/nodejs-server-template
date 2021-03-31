@@ -3,7 +3,10 @@ const { ethers } = require('ethers')
 const secrets = require('../../secrets.json')
 
 // running ganache locally
-const url = config.contract.url
+let url = config.contract.url
+if (process.env.NODE_ENV === 'rinkeby') {
+  url = url + process.env.RINKEBY_API
+}
 const provider = new ethers.providers.JsonRpcProvider(url)
 
 // set Ganache's mnemonic

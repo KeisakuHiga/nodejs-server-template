@@ -1,0 +1,6 @@
+{
+  "contract": {
+    "url": "https://rinkeby.infura.io/v3/",
+    "contractAddress": "0x7b9c14cf133891B45FD47aAaAE3Ad7af80C1a859"
+  }
+}
